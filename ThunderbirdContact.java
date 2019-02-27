@@ -27,6 +27,7 @@ class ThunderbirdContact extends HttpRequest implements Runnable {
 
         firstName = "";
         lastName = "";
+        preferredName = "";
         seatLocation = 0;
 
         // Todo: Add additional fields. 
@@ -66,6 +67,9 @@ class ThunderbirdContact extends HttpRequest implements Runnable {
                         System.out.println("Exception: " + e);
                     }
                 }
+                if (subString[1].equals("preferredName")) {
+                    preferredName = subString[3];
+                }
             }
         }    
     }
@@ -95,6 +99,7 @@ class ThunderbirdContact extends HttpRequest implements Runnable {
         // Todo: Add additional fields to returnString. 
         String returnString = "firstName: " + firstName + "\n";
         returnString = returnString + "lastName: " + lastName + "\n";
+        returnString = returnString + "preferredName: " + preferredName + "\n";
         returnString = returnString + "seatNumber: " + seatLocation + "\n";
         returnString = returnString + super.toString();
 

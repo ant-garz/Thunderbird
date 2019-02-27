@@ -30,10 +30,12 @@ import java.awt.Color;
 import java.awt.Font;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 class ContactTile extends JPanel {
     private int red, green, blue;
     private ThunderbirdContact contactInSeat = null;
+    private String pName = null;
 
     private Boolean isAnIsle = false;
     public void setIsle() { isAnIsle = true; }
@@ -44,19 +46,16 @@ class ContactTile extends JPanel {
         // Todo: Remove everything to do with random colors.
         // Todo: Implement visually appealing colors for isles and seats.
         //AG: I made all of the background colors grey.
-        //SetRandomValues();
     }
 
     ContactTile(ThunderbirdContact contactInSeatIn) {
         super();
-        //SetRandomValues();
         red = 169;
         green = 169;
         blue = 169;
         contactInSeat = contactInSeatIn;
     }
 
-    //chang this to a changer for aisle panels
     final public void SetRandomValues() {
         red = GetNumberBetween(0,255);
         green = GetNumberBetween(0,255);
@@ -90,10 +89,10 @@ class ContactTile extends JPanel {
         int stringY = (panelHeight/2)+30;
         if (contactInSeat != null) {
 
-            // ToDo: Dispay preferred name instead of first and last name. 
-            //AG: Display preferredName
-            String firstAndLastName = contactInSeat.getFirstName()+" "+contactInSeat.getLastName();
-            g.drawString(firstAndLastName,stringX,stringY);
+            // ToDo: Dispay preferred name instead of first and last name.
+            //AG: Displayed preferredName with new getter for preferredName
+            String pName = contactInSeat.getPreferredName();
+            g.drawString(pName,stringX,stringY);
         }
     }
 
@@ -127,8 +126,9 @@ class ThunderbirdFrame extends JFrame implements ActionListener {
         tbM.LoadIndex();
         tbM.LoadContactsThreaded();
 
-        // Todo: Review ThunderbirdModel in detail and implement a multithreaded version of loading contacts. 
+        // Todo: Review ThunderbirdModel in detail and implement a multithreaded version of loading contacts.
         // Hint: Review LoadContact() and LoadContactsThreaded() in detail.
+        //AG: Implemented via tutorial.
 
         System.out.println("Printing Model:");
         System.out.println(tbM);
@@ -138,18 +138,24 @@ class ThunderbirdFrame extends JFrame implements ActionListener {
         tileList = new ArrayList<ContactTile>();
         for(int i=1; i<33; i++) {
             ThunderbirdContact contactInSeat = tbM.findContactInSeat(i);
+
             if (contactInSeat != null) {
                 System.out.println(contactInSeat);
             }
 
             ContactTile tile = new ContactTile(contactInSeat);
 
-            // Todo: Place all the isle seats in a array or an ArrayList instead of hard coding them.
-            //AG: added seats 20 and 28 as aisle seats
-            if ((i==4)||(i==12)||(i==20)||(i==28)||(i==31)) {
-                tile.setIsle();
-            }     
 
+            // Todo: Place all the isle seats in a array or an ArrayList instead of hard coding them.
+            //AG: added seats 20 and 28 as aisle seats   
+            ArrayList<ContactTile> seatArray = new ArrayList<ContactTile>();
+            if ((i==4)||(i==12)||(i==20)||(i==28)||(i==31)) {
+                seatArray.add(tile);
+            }
+
+            for(ContactTile aisleSpot : seatArray){
+                aisleSpot.setIsle();
+            }
             tileList.add(tile);
             contactGridPanel.add(tile);
         }
@@ -158,22 +164,23 @@ class ThunderbirdFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for(ContactTile tile : tileList) {
             // Todo: Remove randomization functionality and implement a visually appealing view of seats and isles.
-            tile.SetRandomValues();
+            //AG: Implemented , removed
 
             // Todo: Implement reverse view where it looks like you are looking at the room from the back instead of the front 
             //     of the room. 
         }
-
         repaint();
     }
 }
 
 // Todo: Rename the following class to Thunderbird.
 // Hint: This will also require you to rename the Java file.
+//AG : Implemented
 public class Thunderbird {
     public static void main(String[] args) {
 
         // Todo: Update the following line so that it reflects the name change to Thunderbird.
+        //AG: Implemented
         System.out.println("Thunderbird Starting...");
 
         ThunderbirdFrame myThunderbirdFrame = new ThunderbirdFrame();
