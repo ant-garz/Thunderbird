@@ -83,7 +83,7 @@ class ContactTile extends JPanel {
 
         g.setColor(new Color(GetContrastingColor(red),GetContrastingColor(green),GetContrastingColor(blue)));
 
-        final int fontSize=18;
+        final int fontSize=14;
         g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
         int stringX = (panelWidth/2)-60;
         int stringY = (panelHeight/2)+30;
@@ -147,7 +147,7 @@ class ThunderbirdFrame extends JFrame implements ActionListener {
 
 
             // Todo: Place all the isle seats in a array or an ArrayList instead of hard coding them.
-            //AG: added seats 20 and 28 as aisle seats   
+            //AG: added seats 20 and 28 as aisle seats.
             ArrayList<ContactTile> seatArray = new ArrayList<ContactTile>();
             if ((i==4)||(i==12)||(i==20)||(i==28)||(i==31)) {
                 seatArray.add(tile);
@@ -167,8 +167,9 @@ class ThunderbirdFrame extends JFrame implements ActionListener {
             //AG: Implemented , removed
 
             // Todo: Implement reverse view where it looks like you are looking at the room from the back instead of the front 
-            //     of the room. 
+            //     of the room.
         }
+
         repaint();
     }
 }
