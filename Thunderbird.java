@@ -64,7 +64,16 @@ class ContactTile extends JPanel {
         addMouseListener(new MouseAdapter() {
 
             public void mousePressed(MouseEvent event) {
-                JOptionPane.showMessageDialog(null, contactInSeatIn);
+                //if/else statement to account for the many empty seats and aisle seats.
+                if(contactInSeat != null){
+                    JOptionPane.showMessageDialog(null, contactInSeatIn);
+                }
+                else if (isAnIsle == false) { //checks to see if desk is present but empty
+                    JOptionPane.showMessageDialog(null, "Empty Desk\nNo Student Information to display.");
+                }
+                else{ //checks to see if user clicked on aisle space or empty spot next to prof.
+                    JOptionPane.showMessageDialog(null, "You have selected part of the Aisle or an empty space.\nNo desk is here.");
+                }
             }
         });
     }
