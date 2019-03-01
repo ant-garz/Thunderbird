@@ -68,6 +68,7 @@ class ContactTile extends JPanel {
                 if(contactInSeat != null){
                     JOptionPane.showMessageDialog(null, contactInSeatIn);
                 }
+                //AG: I know reading this logic it seems backwards, but it works. That being said, I am going to leave like this.
                 else if (isAnIsle == false) { //checks to see if desk is present but empty
                     JOptionPane.showMessageDialog(null, "Empty Desk\nNo Student Information to display.");
                 }

@@ -36,7 +36,11 @@ class ThunderbirdModel extends HttpRequest {
 
                         // Todo: We must have added at least one ThunderbirdContact to be successful. Verify 
                         //     that at least one was added and set the return value to false if no items were
-                        //     added. 
+                        //     added.
+                        //AG implemented via if statement to check if it is ever equal to 0
+                        if (contactList.size() == 0){
+                            returnValue = false;
+                        }
                         returnValue = true;
                     }
                 }
