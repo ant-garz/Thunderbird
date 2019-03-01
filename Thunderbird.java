@@ -15,6 +15,7 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import java.awt.Container; 
 import java.awt.GridLayout;
@@ -23,6 +24,9 @@ import java.awt.FlowLayout;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import java.util.Random;
 import java.awt.Graphics;
@@ -54,6 +58,15 @@ class ContactTile extends JPanel {
         green = 169;
         blue = 169;
         contactInSeat = contactInSeatIn;
+
+        //AG: Implemented Mouse Event for JPanels of ContactTiles so that full information of student is shown in JOPtion Window
+        //    when the Tile in the grid panel is clicked for the respective student.
+        addMouseListener(new MouseAdapter() {
+
+            public void mousePressed(MouseEvent event) {
+                JOptionPane.showMessageDialog(null, contactInSeatIn);
+            }
+        });
     }
 
     final public void SetRandomValues() {
@@ -168,8 +181,9 @@ class ThunderbirdFrame extends JFrame implements ActionListener {
 
             // Todo: Implement reverse view where it looks like you are looking at the room from the back instead of the front 
             //     of the room.
+            //AG: Not implemented, spent ~5 hrs on this feature alone before I threw in the towel.
         }
-
+        System.out.println("Reverse button clicked.");
         repaint();
     }
 }
